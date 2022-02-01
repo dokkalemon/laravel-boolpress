@@ -22,10 +22,10 @@
                     <td>{{$post->id}}</td>
                     <td>{{$post->title}}</td>
                     <td>
-                        <a href=""><button class="btn btn-primary">SHOW</button></a>
+                        <a href="{{route('admin.posts.show', $post->slug)}}"><button class="btn btn-primary">SHOW</button></a>
                     </td>
                     <td>
-                        <a href=""><button class="btn btn-dark">EDIT</button></a>
+                        <a href="{{route('admin.posts.edit', $post->id)}}"><button class="btn btn-dark">EDIT</button></a>
                     </td>
                     <td>
                         <form action="{{route('admin.posts.destroy', $post->id)}}" method="POST">

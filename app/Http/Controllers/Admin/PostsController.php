@@ -97,7 +97,8 @@ class PostsController extends Controller
      */
     public function edit($id)
     {
-
+        $post = Post::find($id);
+        return view('admin.posts.edit', compact('post'));
     }
 
     /**
@@ -109,7 +110,34 @@ class PostsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        //validazione dei dati
+        $request->validate($this->validation_rules(), $this->validation_message());
+
+        $data = $request->all();
+
+        //cerchiamo il post tramite id
+        $post = Post::find($id);
+
+        //Aggiorniamo lo slug solo se il titolo viene modificato
+        if ($data['title'] != $post->title) {
+            $slug = Str::slug($data['title'], '-');
+            $count = 1;
+            $slug_base = $slug;
+
+            while (Post::where('slug', $slug)->first()) {
+                $slug = $slug_base . '-' . $count;
+                $count++;
+            }
+            $data['slug'] = $slug;
+        } 
+        else {
+            $data['slug'] = $post->slug;
+        } 
+
+        //aggiorniamo il post
+        $post->update($data);
+
+        return redirect()->route('admin.posts.show', $post->slug);
     }
 
     /**

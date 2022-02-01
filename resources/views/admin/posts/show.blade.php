@@ -12,7 +12,7 @@
 
         <div class="buttons mt-5">
             <a href="{{route('admin.posts.index')}}"><button class="btn btn-primary">BACK</button></a>
-            <a href=""><button class="btn btn-dark">EDIT</button></a>
+            <a href="{{route('admin.posts.edit', $post->id)}}"><button class="btn btn-dark">EDIT</button></a>
         </div>
 
     </section>

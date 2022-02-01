@@ -59,7 +59,7 @@ class PostsController extends Controller
             $slug = $slug_base . '-' . $count;
             $count++;
         }
-        
+
         //assegnamo lo slug
         $data['slug'] = $slug;
 
@@ -69,12 +69,7 @@ class PostsController extends Controller
         //salviamo
         $new_post->save();
 
-        return 'ciao';
-
-
-
-
-        
+        return redirect()->route('admin.posts.show', $new_post->slug);
     }
 
     /**

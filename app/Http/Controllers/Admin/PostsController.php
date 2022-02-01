@@ -157,7 +157,7 @@ class PostsController extends Controller
 
 
 
-
+/* Metodi per la validazione dei dati dei form create e edit */
     private function validation_rules() {
         return [
             'title' => 'required|max:255',

@@ -1,8 +1,10 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
+use Illuminate\Support\Str;
 
 use App\Http\Controllers\Controller;
+
 use Illuminate\Http\Request;
 
 use App\Post;
@@ -38,8 +40,36 @@ class PostsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        //
+    {   
+        //validazione dei dati
+        $request->validate($this->validation_rules(), $this->validation_message());
+
+        $data = $request->all();
+        
+        //generiamo un nuovo post
+        $new_post = new Post();
+
+        //creazione di slug univoco
+        $slug = Str::slug($data['title'], '-');
+        $count = 1;
+        $slug_base = $slug;
+
+        while(Post::where('slug', $slug)->first()) {
+            $slug = $slug_base . '-' . $count;
+            $count++;
+        }
+
+        $data['slug'] = $slug;
+
+        $new_post->fill($data);
+        $new_post->save();
+
+        return 'ciao';
+
+
+
+
+        
     }
 
     /**
@@ -91,5 +121,24 @@ class PostsController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+
+
+
+
+
+    private function validation_rules() {
+        return [
+            'title' => 'required|max:255',
+            'description' => 'required',
+        ];
+    }
+
+    private function validation_message() {
+        return [
+            'required' => 'The :attribute is required',
+            'max:255' => 'The :attribute is longer than 255 characters',
+        ];
     }
 }

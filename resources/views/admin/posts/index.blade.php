@@ -8,6 +8,13 @@
         <div class="alert alert-danger">Non ci sono Post da visualizzare! <a href="{{route('admin.posts.create')}}"><strong>Creane Uno</strong></a></div>
         @else
 
+        @if(session('deleted')) 
+            <div class="alert alert-success">
+                <strong>{{session('deleted')}}</strong>
+                delete successfully!
+            </div>
+        @endif
+
         <table class="table">
             <thead class="thead-dark">
                 <tr>

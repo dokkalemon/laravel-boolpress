@@ -54,14 +54,19 @@ class PostsController extends Controller
         $count = 1;
         $slug_base = $slug;
 
+        //ciclo per ottenere post con slug uguale
         while(Post::where('slug', $slug)->first()) {
             $slug = $slug_base . '-' . $count;
             $count++;
         }
-
+        
+        //assegnamo lo slug
         $data['slug'] = $slug;
 
+        //assegnamo i dati
         $new_post->fill($data);
+
+        //salviamo
         $new_post->save();
 
         return 'ciao';

@@ -33,6 +33,20 @@
             <p class="text-danger">{{$message}}</p>
         </div>
         @enderror
+
+        <label for="category_id">Categories</label>
+        <select class="form-control mb-5" name="category_id" id="category_id">
+            <option value="">Uncategorized</option>
+            @foreach ($categories as $category)
+            <option @if ($category->id == old('category_id', $post->category_id)) selected @endif    value="{{$category->id}}"> {{$category->name}}</option>
+                
+            @endforeach
+        </select>
+        @error('category_id')
+        <div class="div">
+            <p class="text-danger">{{$message}}</p>
+        </div>
+        @enderror
         
 
         <input type="submit" class="btn btn-primary" value="Save">

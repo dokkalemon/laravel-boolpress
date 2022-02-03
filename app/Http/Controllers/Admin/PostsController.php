@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 use App\Post;
+use App\Category;
 
 class PostsController extends Controller
 {
@@ -30,7 +31,10 @@ class PostsController extends Controller
      */
     public function create()
     {
-        return view('admin.posts.create');
+
+        $categories = Category::all();
+
+        return view('admin.posts.create', compact('categories'));
     }
 
     /**
@@ -162,6 +166,7 @@ class PostsController extends Controller
         return [
             'title' => 'required|max:255',
             'description' => 'required',
+            'category_id' => 'nullable|exists:categories,id'
         ];
     }
 
@@ -169,6 +174,7 @@ class PostsController extends Controller
         return [
             'required' => 'The :attribute is required',
             'max:255' => 'The :attribute is longer than 255 characters',
+            'category_id.exists' => 'The Category is wrong'
         ];
     }
 }

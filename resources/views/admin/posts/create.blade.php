@@ -33,6 +33,15 @@
         </div>
         @enderror
 
+        <label for="category_id">Categories</label>
+        <select class="form-control mb-5" name="category_id" id="category_id">
+            <option value="">Uncategorized</option>
+            @foreach ($categories as $category)
+            <option value="{{$category->id}}"> {{$category->name}}</option>
+                
+            @endforeach
+        </select>
+
         <input type="submit" class="btn btn-primary" value="Save">
         </form>
     </section>

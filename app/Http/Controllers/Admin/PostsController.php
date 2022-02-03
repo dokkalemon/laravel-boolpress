@@ -85,6 +85,7 @@ class PostsController extends Controller
     public function show($slug)
     {
         $post = Post::where('slug', $slug)->first();
+
         
         if (! $post) {
             abort(404);

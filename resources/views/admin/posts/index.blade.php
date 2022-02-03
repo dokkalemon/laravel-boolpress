@@ -22,14 +22,18 @@
                 <tr>
                     <th>ID</th>
                     <th>Title</th>
+                    <th>Category</th>
                     <th colspan="3">Actions</th>
                 </tr>
             </thead>
             <tbody>
+                
                 @foreach ($posts as $post)
                 <tr>
                     <td>{{$post->id}}</td>
                     <td>{{$post->title}}</td>
+                    <td>@if ($post->category) <a href="">{{$post->category->name}}</a> @else Uncategorized @endif</td>
+                    
 
                     {{-- SHOW BUTTON --}}
                     <td>

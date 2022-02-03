@@ -3,6 +3,8 @@
 @section('content')
     <section class="container mt-5">
         <h1 class="text-primary">{{$post->title}}</h1>
+
+        {{-- If categories is null, set Uncategorized --}}
         <h4><span class="badge badge-primary">@if ($post->category) {{$post->category->name}} @else Uncategorized @endif</span></h4>
 
         <div class="row">

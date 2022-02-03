@@ -14,6 +14,7 @@ class Post extends Model
     ];
 
 
+    // One to Many
     public function category() {
         return $this->belongsTo('App\Category');
     }

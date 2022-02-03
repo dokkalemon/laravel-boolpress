@@ -37,7 +37,7 @@
         <select class="form-control mb-5" name="category_id" id="category_id">
             <option value="">Uncategorized</option>
             @foreach ($categories as $category)
-            <option value="{{$category->id}}"> {{$category->name}}</option>
+            <option @if ($category->id == old('category_id')) selected @endif    value="{{$category->id}}"> {{$category->name}}</option>
                 
             @endforeach
         </select>

@@ -41,6 +41,12 @@
                 
             @endforeach
         </select>
+        @error('category_id')
+        <div class="div">
+            <p class="text-danger">{{$message}}</p>
+        </div>
+        @enderror
+
 
         <input type="submit" class="btn btn-primary" value="Save">
         </form>

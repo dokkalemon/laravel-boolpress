@@ -174,7 +174,7 @@ class PostsController extends Controller
         return [
             'required' => 'The :attribute is required',
             'max:255' => 'The :attribute is longer than 255 characters',
-            'category_id.exists' => 'The Category is wrong'
+            'category_id.exists' => 'Select another Category'
         ];
     }
 }

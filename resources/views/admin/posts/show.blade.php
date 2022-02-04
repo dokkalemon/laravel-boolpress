@@ -12,19 +12,15 @@
             <div class="col-md-6">Image Here....</div>
         </div>
 
-        <div class="tags">
+        <div class="tags mt-3">
             <h4>Tag</h4>
             @if (!$post->tags->isEmpty())
                 @foreach ($post->tags as $tag)
-                <span class="badge badge-primary">{{$tag->name}}</span>
+                <span class="badge badge-secondary">{{$tag->name}}</span>
                 @endforeach
             @else
                 <span>Non ci sono tag per questo post</span>
             @endif
-
-
-    
-
         </div>
 
         <div class="buttons mt-5">

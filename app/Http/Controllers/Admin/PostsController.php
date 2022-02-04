@@ -159,7 +159,7 @@ class PostsController extends Controller
         //sync aggiunge ed elimina contemporaneamenta
             $post->tags()->sync($data['tags']);
         else {
-        //cancelliamo tutti i tag
+        //cancelliamo tutti i
             $post->tags()->detach();
         };
 

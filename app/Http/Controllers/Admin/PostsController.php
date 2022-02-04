@@ -154,6 +154,17 @@ class PostsController extends Controller
         //aggiorniamo il post
         $post->update($data);
 
+        //Aggiorniamo i tags
+        if (array_key_exists('tags', $data))
+        //sync aggiunge ed elimina contemporaneamenta
+            $post->tags()->sync($data['tags']);
+        else {
+        //cancelliamo tutti i tag
+            $post->tags()->detach();
+        };
+
+
+
         return redirect()->route('admin.posts.show', $post->slug);
     }
 

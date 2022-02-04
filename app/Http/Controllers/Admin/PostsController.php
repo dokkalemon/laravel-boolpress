@@ -94,7 +94,7 @@ class PostsController extends Controller
     {
         $post = Post::where('slug', $slug)->first();
 
-        
+
         
         if (! $post) {
             abort(404);
@@ -113,7 +113,9 @@ class PostsController extends Controller
     {
         $post = Post::find($id);
         $categories = Category::all();
-        return view('admin.posts.edit', compact('post', 'categories'));
+        $tags = Tag::all();
+        
+        return view('admin.posts.edit', compact('post', 'categories', 'tags'));
     }
 
     /**

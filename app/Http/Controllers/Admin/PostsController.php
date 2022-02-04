@@ -52,6 +52,7 @@ class PostsController extends Controller
 
         $data = $request->all();
         
+        
         //generiamo un nuovo post
         $new_post = new Post();
 
@@ -75,6 +76,11 @@ class PostsController extends Controller
         //salviamo
         $new_post->save();
 
+        //Salviamo la relazione con nuovo post e tags
+        if (array_key_exists('tags', $data)) {
+            $new_post->tags()->attach($data['tags']);
+        }
+
         return redirect()->route('admin.posts.show', $new_post->slug);
     }
 
@@ -88,6 +94,7 @@ class PostsController extends Controller
     {
         $post = Post::where('slug', $slug)->first();
 
+        
         
         if (! $post) {
             abort(404);

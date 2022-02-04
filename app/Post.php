@@ -14,8 +14,13 @@ class Post extends Model
     ];
 
 
-    // One to Many
+    // One to Many - CATEGORIES
     public function category() {
         return $this->belongsTo('App\Category');
+    }
+
+    //Many to Many - TAGS
+    public function tags() {
+        return $this->belongsToMany('App\Tag');
     }
 }

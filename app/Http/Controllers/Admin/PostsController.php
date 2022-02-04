@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 
 use App\Post;
 use App\Category;
+use App\Tag;
 
 class PostsController extends Controller
 {
@@ -33,8 +34,9 @@ class PostsController extends Controller
     {
 
         $categories = Category::all();
+        $tags = Tag::all();
 
-        return view('admin.posts.create', compact('categories'));
+        return view('admin.posts.create', compact('categories', 'tags'));
     }
 
     /**
@@ -168,7 +170,8 @@ class PostsController extends Controller
         return [
             'title' => 'required|max:255',
             'description' => 'required',
-            'category_id' => 'nullable|exists:categories,id'
+            'category_id' => 'nullable|exists:categories,id',
+            'tags' => 'nullable|exists:tags,id',
         ];
     }
 
@@ -176,7 +179,8 @@ class PostsController extends Controller
         return [
             'required' => 'The :attribute is required',
             'max:255' => 'The :attribute is longer than 255 characters',
-            'category_id.exists' => 'Select another Category'
+            'category_id.exists' => 'Select another Category',
+            'tags.exists' => 'Select a different tag',
         ];
     }
 }

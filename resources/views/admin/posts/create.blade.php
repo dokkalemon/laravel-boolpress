@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+
     <section class="container mt-5">
         <h1 class="text-primary">Add a New Post</h1>
 
@@ -41,6 +42,26 @@
                 
             @endforeach
         </select>
+
+        <div class="tags">
+            <h5>Tag</h5>
+            @foreach ($tags as $tag)
+            <span class="mr-3">
+            <input name="tags[]" id="{{$tag->id}}" type="checkbox" value="{{$tag->id}}" 
+            @if (in_array($tag->id, old('tags', []))) checked @endif>
+
+            <label for="{{$tag->id}}">{{$tag->name}}</label>
+             </span>
+            @endforeach
+            
+            
+        </div>
+        @error('tags')
+        <div class="div">
+            <p class="text-danger">{{$message}}</p>
+        </div>
+        @enderror
+
         @error('category_id')
         <div class="div">
             <p class="text-danger">{{$message}}</p>

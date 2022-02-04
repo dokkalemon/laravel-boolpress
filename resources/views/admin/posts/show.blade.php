@@ -12,11 +12,26 @@
             <div class="col-md-6">Image Here....</div>
         </div>
 
+        <div class="tags">
+            <h4>Tag</h4>
+            @if (!$post->tags->isEmpty())
+                @foreach ($post->tags as $tag)
+                <span class="badge badge-primary">{{$tag->name}}</span>
+                @endforeach
+            @else
+                <span>Non ci sono tag per questo post</span>
+            @endif
+
+
+    
+
+        </div>
 
         <div class="buttons mt-5">
             <a href="{{route('admin.posts.index')}}"><button class="btn btn-primary">BACK</button></a>
             <a href="{{route('admin.posts.edit', $post->id)}}"><button class="btn btn-dark">EDIT</button></a>
         </div>
+
 
     </section>
 @endsection

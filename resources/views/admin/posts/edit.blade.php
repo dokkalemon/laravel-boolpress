@@ -53,9 +53,12 @@
             <h5>Tag</h5>
             @foreach ($tags as $tag)
             <span class="mr-3">
-            <input name="tags[]" id="{{$tag->id}}" type="checkbox" value="{{$tag->id}}" 
+            <input name="tags[]" id="{{$tag->id}}" type="checkbox" value="{{$tag->id}}"
+
+            {{-- Se ci sono errori in validazione prendiamo i valori presenti --}}
             @if ($errors->any() && in_array($tag->id, old('tags')))
-                checked                
+                checked               
+            {{-- Se non ci sono errori, cioè al caricamento di pagina prendiamo i tag del post contenuti nell'array tags --}} 
             @elseif(!$errors->any() && $post->tags->contains($tag->id))
                 checked         
             @endif>

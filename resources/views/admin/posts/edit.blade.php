@@ -34,6 +34,7 @@
         </div>
         @enderror
 
+        {{-- CATEGORIES --}}
         <label for="category_id">Categories</label>
         <select class="form-control mb-5" name="category_id" id="category_id">
             <option value="">Uncategorized</option>
@@ -48,7 +49,7 @@
         </div>
         @enderror
 
-
+        {{-- TAGS --}}
         <div class="tags">
             <h5>Tag</h5>
             @foreach ($tags as $tag)
@@ -58,7 +59,7 @@
             {{-- Se ci sono errori in validazione prendiamo i valori presenti --}}
             @if ($errors->any() && in_array($tag->id, old('tags')))
                 checked               
-            {{-- Se non ci sono errori, cioè al caricamento di pagina prendiamo i tag del post contenuti nell'array tags --}} 
+            {{-- Se non ci sono errori, cioè al caricamento di pagina, prendiamo i tag del post contenuti nell'array tags --}} 
             @elseif(!$errors->any() && $post->tags->contains($tag->id))
                 checked         
             @endif>

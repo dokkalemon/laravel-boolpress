@@ -5,7 +5,7 @@
     <div class="all-posts" v-if="posts != null">
       <div class="post mt-5" v-for="post in posts" :key="`post${post.id}`">
         <h2>{{post.title}}</h2>
-        <h4>{{post.created_at}}</h4>
+        <h4>{{formateDate(post.created_at)}}</h4>
         <p>{{createSubString(post.description, 150)}}</p>
         <br>
         <hr>
@@ -57,9 +57,15 @@ export default {
     createSubString(string, maxLength) {
       if (string.length > maxLength) {
         return string.substr(0, maxLength) + '...';
-      } else {
+      } 
         return string
-      }
+    
+    },
+
+    formateDate(date) {
+      const newDate = new Date(date);
+      const dateFormatted = new Intl.DateTimeFormat('it-IT').format(newDate)
+      return dateFormatted;
     }
 
     

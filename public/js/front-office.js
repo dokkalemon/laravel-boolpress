@@ -1982,9 +1982,14 @@ __webpack_require__.r(__webpack_exports__);
     createSubString: function createSubString(string, maxLength) {
       if (string.length > maxLength) {
         return string.substr(0, maxLength) + '...';
-      } else {
-        return string;
       }
+
+      return string;
+    },
+    formateDate: function formateDate(date) {
+      var newDate = new Date(date);
+      var dateFormatted = new Intl.DateTimeFormat('it-IT').format(newDate);
+      return dateFormatted;
     }
   }
 });
@@ -2515,7 +2520,7 @@ var render = function () {
                 [
                   _c("h2", [_vm._v(_vm._s(post.title))]),
                   _vm._v(" "),
-                  _c("h4", [_vm._v(_vm._s(post.created_at))]),
+                  _c("h4", [_vm._v(_vm._s(_vm.formateDate(post.created_at)))]),
                   _vm._v(" "),
                   _c("p", [
                     _vm._v(_vm._s(_vm.createSubString(post.description, 150))),

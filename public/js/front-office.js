@@ -1954,6 +1954,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -1963,18 +1971,23 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
-      posts: null
+      posts: null,
+      pages: null
     };
   },
   created: function created() {
-    this.getPosts();
+    this.getPosts(1);
   },
   methods: {
-    getPosts: function getPosts() {
+    getPosts: function getPosts(page) {
       var _this = this;
 
-      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('http://127.0.0.1:8000/api/posts').then(function (result) {
-        _this.posts = result.data;
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("http://127.0.0.1:8000/api/posts?page=".concat(page)).then(function (result) {
+        _this.posts = result.data.data;
+        _this.pages = {
+          current: result.data.current_page,
+          last: result.data.last_page
+        };
       })["catch"](function (err) {
         console.log(err);
       });
@@ -2513,26 +2526,62 @@ var render = function () {
         ? _c(
             "div",
             { staticClass: "all-posts" },
-            _vm._l(_vm.posts, function (post) {
-              return _c(
-                "div",
-                { key: "post" + post.id, staticClass: "post mt-5" },
-                [
-                  _c("h2", [_vm._v(_vm._s(post.title))]),
-                  _vm._v(" "),
-                  _c("h4", [_vm._v(_vm._s(_vm.formateDate(post.created_at)))]),
-                  _vm._v(" "),
-                  _c("p", [
-                    _vm._v(_vm._s(_vm.createSubString(post.description, 150))),
-                  ]),
-                  _vm._v(" "),
-                  _c("br"),
-                  _vm._v(" "),
-                  _c("hr"),
-                ]
-              )
-            }),
-            0
+            [
+              _vm._l(_vm.posts, function (post) {
+                return _c(
+                  "div",
+                  { key: "post" + post.id, staticClass: "post mt-5" },
+                  [
+                    _c("h2", [_vm._v(_vm._s(post.title))]),
+                    _vm._v(" "),
+                    _c("h4", [
+                      _vm._v(_vm._s(_vm.formateDate(post.created_at))),
+                    ]),
+                    _vm._v(" "),
+                    _c("p", [
+                      _vm._v(
+                        _vm._s(_vm.createSubString(post.description, 150))
+                      ),
+                    ]),
+                    _vm._v(" "),
+                    _c("br"),
+                    _vm._v(" "),
+                    _c("hr"),
+                  ]
+                )
+              }),
+              _vm._v(" "),
+              _c("div", { staticClass: "buttons" }, [
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-primary",
+                    attrs: { disabled: this.pages.current === 1 },
+                    on: {
+                      click: function ($event) {
+                        return _vm.getPosts(_vm.pages.current - 1)
+                      },
+                    },
+                  },
+                  [_vm._v("PREV")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-primary",
+                    attrs: { disabled: this.pages.current === this.pages.last },
+                    on: {
+                      click: function ($event) {
+                        return _vm.getPosts(_vm.pages.current + 1)
+                      },
+                    },
+                  },
+                  [_vm._v("NEXT")]
+                ),
+              ]),
+            ],
+            2
           )
         : _c("Loader"),
     ],

@@ -16,6 +16,10 @@
       <!-- Button -->
       <div class="buttons">
         <button class="btn btn-primary" :disabled="this.pages.current === 1" @click="getPosts(pages.current - 1)">PREV</button>
+
+      <button class="btn" :class="pages.current === index + 1 ? 'btn-primary' : 'btn-secondary'" v-for="(page, index) in pages.last" :key="`page${index}`" @click="getPosts(index + 1)">{{index + 1}}</button>
+
+
         <button class="btn btn-primary" :disabled="this.pages.current === this.pages.last" @click="getPosts(pages.current + 1)">NEXT</button>
       </div>
     </div>

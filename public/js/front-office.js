@@ -1962,6 +1962,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2551,35 +2555,62 @@ var render = function () {
                 )
               }),
               _vm._v(" "),
-              _c("div", { staticClass: "buttons" }, [
-                _c(
-                  "button",
-                  {
-                    staticClass: "btn btn-primary",
-                    attrs: { disabled: this.pages.current === 1 },
-                    on: {
-                      click: function ($event) {
-                        return _vm.getPosts(_vm.pages.current - 1)
+              _c(
+                "div",
+                { staticClass: "buttons" },
+                [
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-primary",
+                      attrs: { disabled: this.pages.current === 1 },
+                      on: {
+                        click: function ($event) {
+                          return _vm.getPosts(_vm.pages.current - 1)
+                        },
                       },
                     },
-                  },
-                  [_vm._v("PREV")]
-                ),
-                _vm._v(" "),
-                _c(
-                  "button",
-                  {
-                    staticClass: "btn btn-primary",
-                    attrs: { disabled: this.pages.current === this.pages.last },
-                    on: {
-                      click: function ($event) {
-                        return _vm.getPosts(_vm.pages.current + 1)
+                    [_vm._v("PREV")]
+                  ),
+                  _vm._v(" "),
+                  _vm._l(_vm.pages.last, function (page, index) {
+                    return _c(
+                      "button",
+                      {
+                        key: "page" + index,
+                        staticClass: "btn",
+                        class:
+                          _vm.pages.current === index + 1
+                            ? "btn-primary"
+                            : "btn-secondary",
+                        on: {
+                          click: function ($event) {
+                            return _vm.getPosts(index + 1)
+                          },
+                        },
+                      },
+                      [_vm._v(_vm._s(index + 1))]
+                    )
+                  }),
+                  _vm._v(" "),
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-primary",
+                      attrs: {
+                        disabled: this.pages.current === this.pages.last,
+                      },
+                      on: {
+                        click: function ($event) {
+                          return _vm.getPosts(_vm.pages.current + 1)
+                        },
                       },
                     },
-                  },
-                  [_vm._v("NEXT")]
-                ),
-              ]),
+                    [_vm._v("NEXT")]
+                  ),
+                ],
+                2
+              ),
             ],
             2
           )

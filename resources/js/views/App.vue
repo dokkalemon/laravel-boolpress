@@ -2,13 +2,19 @@
   <div class="div container mt-3">
     <h1>All Post</h1>
 
-    <div class="post mt-5" v-for="post in posts" :key="`post${post.id}`" >
-      <h2>{{post.title}}</h2>
-      <h4>{{post.created_at}}</h4>
-      <p>{{createSubString(post.description, 150)}}</p>
-      <br>
-      <hr>
+    <div class="all-posts" v-if="posts != null">
+      <div class="post mt-5" v-for="post in posts" :key="`post${post.id}`">
+        <h2>{{post.title}}</h2>
+        <h4>{{post.created_at}}</h4>
+        <p>{{createSubString(post.description, 150)}}</p>
+        <br>
+        <hr>
+      </div>
     </div>
+
+    <Loader v-else/>
+
+
    
 
 
@@ -18,10 +24,12 @@
 
 <script>
 import axios from 'axios';
+import Loader from '../components/Loader'
 
 export default {
     name: 'App',
     components: {
+      Loader
 
     },
 

@@ -1932,6 +1932,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({});
 
 /***/ }),
@@ -2105,13 +2107,51 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
 //
 //
 //
 //
 //
 //
-/* harmony default export */ __webpack_exports__["default"] = ({});
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: 'Post',
+  created: function created() {
+    this.getPostDetail();
+  },
+  data: function data() {
+    return {
+      postDetail: null
+    };
+  },
+  methods: {
+    getPostDetail: function getPostDetail() {
+      var _this = this;
+
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("http://127.0.0.1:8000/api/post/".concat(this.$route.params.slug)).then(function (res) {
+        _this.postDetail = res.data;
+      })["catch"](function (err) {
+        console.log(err);
+      });
+    },
+    formateDate: function formateDate(date) {
+      var newDate = new Date(date);
+      var dateFormatted = new Intl.DateTimeFormat('it-IT').format(newDate);
+      return dateFormatted;
+    }
+  }
+});
 
 /***/ }),
 
@@ -2629,67 +2669,78 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "nav",
-    { staticClass: "navbar navbar-expand-lg navbar-dark bg-dark" },
-    [
-      _c("a", { staticClass: "navbar-brand", attrs: { href: "#" } }, [
-        _vm._v("Navbar"),
-      ]),
-      _vm._v(" "),
-      _vm._m(0),
-      _vm._v(" "),
-      _c(
-        "div",
-        {
-          staticClass: "collapse navbar-collapse",
-          attrs: { id: "navbarSupportedContent" },
-        },
-        [
-          _c("ul", { staticClass: "navbar-nav mr-auto" }, [
-            _c(
-              "li",
-              { staticClass: "nav-item" },
-              [
-                _c(
-                  "router-link",
-                  { staticClass: "nav-link", attrs: { to: { name: "home" } } },
-                  [_vm._v("Home")]
-                ),
-              ],
-              1
-            ),
-            _vm._v(" "),
-            _c(
-              "li",
-              { staticClass: "nav-item" },
-              [
-                _c(
-                  "router-link",
-                  { staticClass: "nav-link", attrs: { to: { name: "about" } } },
-                  [_vm._v("About")]
-                ),
-              ],
-              1
-            ),
-            _vm._v(" "),
-            _c(
-              "li",
-              { staticClass: "nav-item" },
-              [
-                _c(
-                  "router-link",
-                  { staticClass: "nav-link", attrs: { to: { name: "blog" } } },
-                  [_vm._v("Blog")]
-                ),
-              ],
-              1
-            ),
-          ]),
-        ]
-      ),
-    ]
-  )
+  return _c("div", { staticClass: "header-app bg-dark" }, [
+    _c(
+      "nav",
+      { staticClass: "navbar navbar-expand-lg navbar-dark bg-dark container" },
+      [
+        _c("a", { staticClass: "navbar-brand", attrs: { href: "#" } }, [
+          _vm._v("Navbar"),
+        ]),
+        _vm._v(" "),
+        _vm._m(0),
+        _vm._v(" "),
+        _c(
+          "div",
+          {
+            staticClass: "collapse navbar-collapse",
+            attrs: { id: "navbarSupportedContent" },
+          },
+          [
+            _c("ul", { staticClass: "navbar-nav mr-auto" }, [
+              _c(
+                "li",
+                { staticClass: "nav-item" },
+                [
+                  _c(
+                    "router-link",
+                    {
+                      staticClass: "nav-link",
+                      attrs: { to: { name: "home" } },
+                    },
+                    [_vm._v("Home")]
+                  ),
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "li",
+                { staticClass: "nav-item" },
+                [
+                  _c(
+                    "router-link",
+                    {
+                      staticClass: "nav-link",
+                      attrs: { to: { name: "about" } },
+                    },
+                    [_vm._v("About")]
+                  ),
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "li",
+                { staticClass: "nav-item" },
+                [
+                  _c(
+                    "router-link",
+                    {
+                      staticClass: "nav-link",
+                      attrs: { to: { name: "blog" } },
+                    },
+                    [_vm._v("Blog")]
+                  ),
+                ],
+                1
+              ),
+            ]),
+          ]
+        ),
+      ]
+    ),
+  ])
 }
 var staticRenderFns = [
   function () {
@@ -2969,7 +3020,37 @@ var render = function () {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "container mt-5" }, [
-    _vm._v("\n    POST TITLE HERE\n"),
+    _c("h1", [_vm._v(_vm._s(_vm.postDetail.title))]),
+    _vm._v(" "),
+    _c("div", { staticClass: "date-create" }, [
+      _vm._v(
+        "\n        Data inserimento: " +
+          _vm._s(_vm.formateDate(_vm.postDetail.created_at)) +
+          "\n    "
+      ),
+    ]),
+    _vm._v(" "),
+    _c("h3", [
+      _c("span", { staticClass: "badge badge-primary" }, [
+        _vm._v(_vm._s(_vm.postDetail.category.name)),
+      ]),
+    ]),
+    _vm._v(" "),
+    _c("p", [_vm._v(_vm._s(_vm.postDetail.description))]),
+    _vm._v(" "),
+    _c("h4", [_vm._v("Tag")]),
+    _vm._v(" "),
+    _c(
+      "h5",
+      _vm._l(_vm.postDetail.tags, function (tag) {
+        return _c(
+          "span",
+          { key: "tag" + tag.id, staticClass: "badge badge-primary" },
+          [_vm._v(_vm._s(tag.name))]
+        )
+      }),
+      0
+    ),
   ])
 }
 var staticRenderFns = []

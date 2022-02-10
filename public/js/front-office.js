@@ -1952,7 +1952,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: 'Loader'
+  name: 'Loader',
+  props: {
+    text: String
+  }
 });
 
 /***/ }),
@@ -2816,7 +2819,7 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("p", [_vm._v("Please Wait...")])
+  return _c("p", [_vm._v(_vm._s(_vm.text))])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -2984,7 +2987,7 @@ var render = function () {
             ],
             2
           )
-        : _c("Loader"),
+        : _c("Loader", { attrs: { text: "Please Wait..." } }),
     ],
     1
   )
@@ -3123,7 +3126,7 @@ var render = function () {
               0
             ),
           ])
-        : _c("Loader"),
+        : _c("Loader", { attrs: { text: "Loading Post Detail..." } }),
     ],
     1
   )

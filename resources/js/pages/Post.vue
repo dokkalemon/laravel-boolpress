@@ -11,7 +11,7 @@
           <h5><span class="badge badge-primary" v-for="tag in postDetail.tags" :key="`tag${tag.id}`">{{tag.name}}</span></h5>
       </div>
 
-      <Loader v-else/>
+      <Loader v-else text="Loading Post Detail..."/>
   </div>
 
 

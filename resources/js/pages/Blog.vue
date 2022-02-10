@@ -26,7 +26,7 @@
       </div>
     </div>
 
-    <Loader v-else/>
+    <Loader v-else text="Please Wait..."/>
 
 
    

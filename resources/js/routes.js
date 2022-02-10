@@ -6,6 +6,7 @@ import Home from './pages/Home.vue';
 import About from './pages/About.vue';
 import Blog from './pages/Blog.vue';
 import Post from './pages/Post.vue';
+import NotAvailable from './pages/NotAvailable.vue';
 
 /* ATTIVIAMO IL ROUTER */
 Vue.use(VueRouter)
@@ -35,6 +36,13 @@ const router = new VueRouter({
             path: '/blog/:slug',
             name: 'post',
             component: Post,
+        },
+
+        //404 Route
+        {
+            path: '*',
+            name: 'invalid',
+            component: NotAvailable,
         }
     ],
 });

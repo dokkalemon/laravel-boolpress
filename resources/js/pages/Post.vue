@@ -1,23 +1,31 @@
 <template>
   <div class="container mt-5">
-      <h1>{{postDetail.title}}</h1>
-      <div class="date-create">
-          Data inserimento: {{formateDate(postDetail.created_at)}}
+      <div class="post" v-if="postDetail">
+          <h1>{{postDetail.title}}</h1>
+          <div class="date-create">
+              Data inserimento: {{formateDate(postDetail.created_at)}}
+          </div>
+          <h3><span class="badge badge-primary">{{postDetail.category.name}}</span></h3>
+          <p>{{postDetail.description}}</p>
+          <h4>Tag</h4>
+          <h5><span class="badge badge-primary" v-for="tag in postDetail.tags" :key="`tag${tag.id}`">{{tag.name}}</span></h5>
       </div>
-      <h3><span class="badge badge-primary">{{postDetail.category.name}}</span></h3>
 
-      <p>{{postDetail.description}}</p>
-
-      <h4>Tag</h4>
-      <h5><span class="badge badge-primary" v-for="tag in postDetail.tags" :key="`tag${tag.id}`">{{tag.name}}</span></h5>
+      <Loader v-else/>
   </div>
+
+
 </template>
 
 <script>
 import axios from 'axios';
+import Loader from '../components/Loader.vue'
 
 export default {
-    name: 'Post',
+    name: 'Post', 
+    components: {
+        Loader
+    },
 
     created() {
         this.getPostDetail();

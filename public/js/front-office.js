@@ -129,6 +129,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({});
 
 /***/ }),
@@ -720,9 +723,24 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("h1", [_vm._v("Qui home")])
+  return _vm._m(0)
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "container mt-5" }, [
+      _c("h1", [_vm._v("Home Page")]),
+      _vm._v(" "),
+      _c("p", [
+        _vm._v(
+          "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea veniam debitis consequuntur itaque cupiditate repudiandae alias. Voluptates officia molestias natus ad voluptatem, adipisci rerum reiciendis. Cupiditate dicta ex sequi sed."
+        ),
+      ]),
+    ])
+  },
+]
 render._withStripped = true
 
 

@@ -2174,7 +2174,13 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("http://127.0.0.1:8000/api/post/".concat(this.$route.params.slug)).then(function (res) {
-        _this.postDetail = res.data;
+        if (res.data.not_available) {
+          _this.$router.push({
+            name: 'invalid'
+          });
+        } else {
+          _this.postDetail = res.data;
+        }
       })["catch"](function (err) {
         console.log(err);
       });

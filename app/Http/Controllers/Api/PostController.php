@@ -18,7 +18,9 @@ class PostController extends Controller
 
         $post = Post::where('slug', $slug)->with('category', 'tags')->first();
 
-        
+        if(! $post) {
+            $post['not_available'] = true;
+        }
 
         return response()->json($post);
     }

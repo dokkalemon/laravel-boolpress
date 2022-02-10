@@ -41,7 +41,12 @@ export default {
         getPostDetail() {
             axios.get(`http://127.0.0.1:8000/api/post/${this.$route.params.slug}`)
             .then(res=>{
-                this.postDetail = res.data;
+                if (res.data.not_available) {
+                    this.$router.push({name: 'invalid'})
+                } else {
+                    
+                    this.postDetail = res.data;
+                }
             })
             .catch(err=>{
                 console.log(err);

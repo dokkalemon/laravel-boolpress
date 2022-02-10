@@ -4,6 +4,8 @@ import VueRouter from 'vue-router';
 /* IMPORTIAMO I COMPONENTI */
 import Home from './pages/Home.vue';
 import About from './pages/About.vue';
+import Blog from './pages/Blog.vue';
+import Post from './pages/Post.vue';
 
 /* ATTIVIAMO IL ROUTER */
 Vue.use(VueRouter)
@@ -22,6 +24,17 @@ const router = new VueRouter({
             path: '/about',
             name: 'about',
             component: About,
+        },
+        { 
+            path: '/blog',
+            name: 'blog',
+            component: Blog,
+        },
+        //Rotta dinamica
+        {
+            path: '/blog/:slug',
+            name: 'post',
+            component: Post,
         }
     ],
 });

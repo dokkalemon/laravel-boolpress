@@ -6,6 +6,7 @@ use Illuminate\Support\Str;
 use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 use App\Post;
 use App\Category;
@@ -51,7 +52,7 @@ class PostsController extends Controller
         $request->validate($this->validation_rules(), $this->validation_message());
 
         $data = $request->all();
-        
+        $img_path = Storage::put('uploads', $data['image']);
         
         //generiamo un nuovo post
         $new_post = new Post();
@@ -93,7 +94,7 @@ class PostsController extends Controller
     public function show($slug)
     {
         $post = Post::where('slug', $slug)->first();
-
+        dump(asset($post->image));
 
         
         if (! $post) {
@@ -192,6 +193,7 @@ class PostsController extends Controller
             'description' => 'required',
             'category_id' => 'nullable|exists:categories,id',
             'tags' => 'nullable|exists:tags,id',
+            'image' => 'nullable|mimes:jpg,bmp,png'
         ];
     }
 
@@ -201,6 +203,7 @@ class PostsController extends Controller
             'max:255' => 'The :attribute is longer than 255 characters',
             'category_id.exists' => 'Select another Category',
             'tags.exists' => 'Select a different tag',
+            'image.mimes' => 'Please, Choose a image with jpg, bmp or png extension'
         ];
     }
 }

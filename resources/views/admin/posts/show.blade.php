@@ -9,7 +9,9 @@
 
         <div class="row">
             <div class="col-md-6">{{$post->description}}</div>
-            <div class="col-md-6">Image Here....</div>
+            <div class="col-md-6">
+                <img src="{{ asset('storage/' . $post->image)}}" alt="">
+            </div>
         </div>
 
         <div class="tags mt-3">

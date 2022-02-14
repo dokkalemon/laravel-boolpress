@@ -16,7 +16,7 @@
             </div>
         @endif
 
-        <form action="{{route('admin.posts.store')}}" method="POST" class="mt-3">
+        <form action="{{route('admin.posts.store')}}" method="POST" class="mt-3" enctype="multipart/form-data">
         @csrf
 
         <label for="title">Title</label>
@@ -68,6 +68,15 @@
         </div>
         @enderror
 
+        <div class="custom-file mb-3 mt-3">
+            <input type="file" class="custom-file-input" id="image" name="image">
+            <label class="custom-file-label" for="image">Choose file</label>
+        </div>
+        @error('image')
+        <div class="div">
+            <p class="text-danger">{{$message}}</p>
+        </div>
+          @enderror
 
         <input type="submit" class="btn btn-primary" value="Save">
         </form>

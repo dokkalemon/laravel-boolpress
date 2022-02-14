@@ -52,7 +52,11 @@ class PostsController extends Controller
         $request->validate($this->validation_rules(), $this->validation_message());
 
         $data = $request->all();
-        $img_path = Storage::put('uploads', $data['image']);
+        
+        if (array_key_exist('image', $data)) {
+            $img_path = Storage::put('uploads', $data['image']);
+            $data['image'] = $img_path;
+        }
         
         //generiamo un nuovo post
         $new_post = new Post();
@@ -94,7 +98,7 @@ class PostsController extends Controller
     public function show($slug)
     {
         $post = Post::where('slug', $slug)->first();
-        dump(asset($post->image));
+        dump($post->image);
 
         
         if (! $post) {

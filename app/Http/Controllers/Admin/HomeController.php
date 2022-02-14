@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Auth;
 class HomeController extends Controller
 {
     public function index() {
-        Mail::to(Auth::user()->email)->send(new SendNewMail());
+        Mail::to(Auth::user()->email)->send(new SendNewMail(Auth::user()->name));
 
         return view('admin.home');
     }

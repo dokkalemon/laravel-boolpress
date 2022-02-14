@@ -16,9 +16,9 @@ class SendNewMail extends Mailable
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($name)
     {
-        //
+        $this->name = $name;
     }
 
     /**
@@ -28,6 +28,9 @@ class SendNewMail extends Mailable
      */
     public function build()
     {
-        return $this->view('mails.welcome');
+        return $this->view('mails.welcome')
+                    ->with([
+                        'name' => $this->name
+                    ]);
     }
 }

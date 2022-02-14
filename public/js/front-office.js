@@ -19039,7 +19039,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _pages_About_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./pages/About.vue */ "./resources/js/pages/About.vue");
 /* harmony import */ var _pages_Blog_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./pages/Blog.vue */ "./resources/js/pages/Blog.vue");
 /* harmony import */ var _pages_Post_vue__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./pages/Post.vue */ "./resources/js/pages/Post.vue");
-/* harmony import */ var _pages_NotAvailable_vue__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./pages/NotAvailable.vue */ "./resources/js/pages/NotAvailable.vue");
+/* harmony import */ var _pages_NotAvailable_vue__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./pages/NotAvailable.vue */ "./resources/js/pages/NotAvailable.vue");
 
 
 /* IMPORTIAMO I COMPONENTI */
@@ -19078,7 +19078,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
   {
     path: '*',
     name: 'invalid',
-    component: _pages_NotAvailable_vue__WEBPACK_IMPORTED_MODULE_7__["default"]
+    component: _pages_NotAvailable_vue__WEBPACK_IMPORTED_MODULE_6__["default"]
   }]
 });
 /* harmony default export */ __webpack_exports__["default"] = (router);

@@ -15,7 +15,7 @@
             </div>
         @endif
 
-        <form action="{{route('admin.posts.update', $post->id)}}" method="POST" class="mt-3">
+        <form action="{{route('admin.posts.update', $post->id)}}" method="POST" class="mt-3" enctype="multipart/form-data">
         @csrf
         @method('PATCH')
 
@@ -74,9 +74,22 @@
         </div>
         @enderror
 
+        <div class="custom-file mb-5 mt-3">
+            <input type="file" class="custom-file-input" id="image" name="image">
+            <label class="custom-file-label" for="image">Choose file</label>
+            <div class="image">
+            </div>
+        </div>
+        @error('image')
+        <div class="div">
+            <p class="text-danger">{{$message}}</p>
+        </div>
+        @enderror
+        
+        <img src="{{asset('storage/' . $post->image)}}" class="w-25 mt-3 mb-5" alt="">
         
 
-        <input type="submit" class="btn btn-primary" value="Save">
+        <input type="submit" class="btn btn-primary  d-block" value="Save">
         </form>
     </section>
 @endsection

@@ -98,8 +98,6 @@ class PostsController extends Controller
     public function show($slug)
     {
         $post = Post::where('slug', $slug)->first();
-        dump($post->image);
-
         
         if (! $post) {
             abort(404);
@@ -137,8 +135,17 @@ class PostsController extends Controller
 
         $data = $request->all();
 
+        
         //cerchiamo il post tramite id
         $post = Post::find($id);
+        
+        //aggiorniamo l'immagine
+        if (array_key_exists('image', $data)) {
+            if ($post->image) {
+                Storage::delete($post->image);
+            }
+            $data['image'] = Storage::put('uploads', $data['image']);
+        }
 
         //Aggiorniamo lo slug solo se il titolo viene modificato
         if ($data['title'] != $post->title) {

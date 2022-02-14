@@ -10,7 +10,7 @@
         <div class="row">
             <div class="col-md-6">{{$post->description}}</div>
             <div class="col-md-6">
-                <img src="{{ asset('storage/' . $post->image)}}" alt="">
+                <img src="{{ asset('storage/' . $post->image)}}" class="w-100" alt="">
             </div>
         </div>
 
